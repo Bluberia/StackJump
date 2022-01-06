@@ -11,8 +11,15 @@ public class MovingCube : MonoBehaviour
     public bool randomColor = true;
 
     [SerializeField]
-    private float moveSpeed = 2f;
-    
+    private float minimumSpeed = 1f;
+    [SerializeField]
+    private float maximumSpeed = 5f;
+    private float moveSpeed;
+
+    private void Start() {
+        moveSpeed = Random.Range(minimumSpeed, maximumSpeed);    
+    }
+
     private void OnEnable() 
     {
         if (LastCube == null)
@@ -28,7 +35,7 @@ public class MovingCube : MonoBehaviour
     }
 
     internal void Stop() {
-        moveSpeed = 0;
+        moveSpeed = 0f;
         float pos = transform.position.x - LastCube.transform.position.x;
         //Debug.Log(pos);
         LastCube = this;

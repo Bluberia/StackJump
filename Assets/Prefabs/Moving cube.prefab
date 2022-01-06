@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomColor: 1
-  moveSpeed: 3
+  minimumSpeed: 2
+  maximumSpeed: 5
 --- !u!54 &3677506329564693714
 Rigidbody:
   m_ObjectHideFlags: 0
