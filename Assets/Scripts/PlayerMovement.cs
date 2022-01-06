@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (any.gameObject.CompareTag("Cube")) {
             onGround = true;
+        }
+        if (any.gameObject.transform.position.y == MovingCube.CurrentCube.transform.position.y) {
             for (int k=0; k < any.contacts.Length; k++) 
             {
                 if (Vector3.Angle(any.contacts[k].normal, validDirection) > contactThreshold)

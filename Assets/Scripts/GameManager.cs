@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         spawners = FindObjectsOfType<Spawner>();
-        NextCube();
     }
 
     // Restart the game
