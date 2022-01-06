@@ -29,6 +29,7 @@ public class MovingCube : MonoBehaviour
             GetComponent<Renderer>().material.color = GetRandomColor();
     }
 
+    // Give a random color to the cubes
     private Color GetRandomColor()
     {
         return new Color(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f));
@@ -36,11 +37,10 @@ public class MovingCube : MonoBehaviour
 
     internal void Stop() {
         moveSpeed = 0f;
-        float pos = transform.position.x - LastCube.transform.position.x;
-        //Debug.Log(pos);
         LastCube = this;
     }
 
+    // Refresh the data for the cubes
     public static void RestartCubes() {
         CurrentCube = null;
         LastCube = null;

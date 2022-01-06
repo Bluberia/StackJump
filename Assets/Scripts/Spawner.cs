@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private MoveDirection moveDirection;
     
+    // Spawn a cube in the game
     public void SpawnCube()
     {
         var cube = Instantiate(cubePrefab);
@@ -25,6 +26,7 @@ public class Spawner : MonoBehaviour
         cube.MoveDirection = moveDirection;
     }
 
+    // Draw Gizmos around the spawner 
     private void OnDrawGizmos() 
     {
         Gizmos.color = Color.green;

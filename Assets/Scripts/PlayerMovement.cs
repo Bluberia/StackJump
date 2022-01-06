@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Detect the collision with the player
     void OnCollisionEnter(Collision any) 
     {
         Vector3 validDirection = Vector3.up;
@@ -41,9 +42,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Vector3.Angle(any.contacts[k].normal, validDirection) > contactThreshold)
                 {
+                    // If the player hit the side of the cube, restart the game
                     GameManager.Restart();
                     break;
                 } else {
+                    // If the player hit the side of the cube, spawn a new cube
                     canvas.GetComponent<ScoreText>().OnCubeDisappear(1);
                     GameManager.NextCube();
                 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
+// Manager of the game
 public class GameManager : MonoBehaviour
 {
     private static Spawner[] spawners;
@@ -15,11 +16,13 @@ public class GameManager : MonoBehaviour
         NextCube();
     }
 
+    // Restart the game
     public static void Restart() {
         MovingCube.RestartCubes();
         SceneManager.LoadScene(0);
     }
 
+    // Launch the next cube 
     public static void NextCube() {
         if (MovingCube.CurrentCube != null)
             MovingCube.CurrentCube.Stop();
