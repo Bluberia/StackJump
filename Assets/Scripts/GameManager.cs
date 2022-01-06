@@ -5,7 +5,6 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    public static event Action OnCubeSpawned = delegate {};
     private Spawner[] spawners;
     private int spawnerIndex;
     private Spawner currentSpawner;
@@ -25,7 +24,7 @@ public class GameManager : MonoBehaviour
             currentSpawner = spawners[spawnerIndex];
 
             currentSpawner.SpawnCube();
-            OnCubeSpawned();
+            GameObject.Find("Score Text").GetComponent<ScoreText>().OnCubeSpawned();
         }
     }
 }

@@ -6,15 +6,15 @@ using TMPro;
 public class ScoreText : MonoBehaviour
 {
     private int score;
+    private int bestScore;
     private TextMeshProUGUI text;
 
     void Start()
     {
         text = GetComponent<TMPro.TextMeshProUGUI>();
-        GameManager.OnCubeSpawned += GameManager_OnCubeSpawned;
     }
 
-    private void GameManager_OnCubeSpawned()
+    public void OnCubeSpawned()
     {
         score++;
         text.text = score.ToString();
