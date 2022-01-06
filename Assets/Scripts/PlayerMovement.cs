@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public bool onGround;
     private Rigidbody rb;
 
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private CameraMove cameraScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
                     GameManager.Restart();
                     break;
                 } else {
-                    GameObject.Find("Canvas").GetComponent<ScoreText>().OnCubeDisappear(1);
+                    canvas.GetComponent<ScoreText>().OnCubeDisappear(1);
                     GameManager.NextCube();
                 }
             }
