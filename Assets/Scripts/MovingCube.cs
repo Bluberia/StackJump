@@ -30,16 +30,25 @@ public class MovingCube : MonoBehaviour
     internal void Stop() {
         moveSpeed = 0;
         float pos = transform.position.x - LastCube.transform.position.x;
-        Debug.Log(pos);
+        //Debug.Log(pos);
         LastCube = this;
+    }
+
+    public static void RestartCubes() {
+        CurrentCube = null;
+        LastCube = null;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (MoveDirection == MoveDirection.R)
-            transform.position += transform.right * Time.deltaTime * moveSpeed;
-        if (MoveDirection == MoveDirection.L)
-            transform.position -= transform.right * Time.deltaTime * moveSpeed;
+        if (MoveDirection == MoveDirection.R) {
+            if (transform.position.x < 0)
+                transform.position += transform.right * Time.deltaTime * moveSpeed;
+        }
+        if (MoveDirection == MoveDirection.L) {
+            if (transform.position.x > 0)
+                transform.position -= transform.right * Time.deltaTime * moveSpeed;
+        }
     }
 }

@@ -26,7 +26,25 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision any) 
     {
-        any.gameObject.CompareTag("Ground");
-        onGround = true;
+        Vector3 validDirection = Vector3.up;
+        float contactThreshold = 10;
+
+        if (any.gameObject.CompareTag("Ground")) {
+            onGround = true;
+        }
+        if (any.gameObject.CompareTag("Cube")) {
+            onGround = true;
+            for (int k=0; k < any.contacts.Length; k++) 
+            {
+                if (Vector3.Angle(any.contacts[k].normal, validDirection) > contactThreshold)
+                {
+                    GameManager.Restart();
+                    break;
+                } else {
+                    GameObject.Find("Canvas").GetComponent<ScoreText>().OnCubeDisappear(1);
+                    GameManager.NextCube();
+                }
+            }
+        }
     }
 }

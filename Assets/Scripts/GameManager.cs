@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private Spawner[] spawners;
-    private int spawnerIndex;
-    private Spawner currentSpawner;
+    private static Spawner[] spawners;
+    private static int spawnerIndex;
+    private static Spawner currentSpawner;
 
     private void Awake() {
         spawners = FindObjectsOfType<Spawner>();
+        NextCube();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (MovingCube.CurrentCube != null)
-                MovingCube.CurrentCube.Stop();
-            spawnerIndex = spawnerIndex == 0 ? 1 : 0;
-            currentSpawner = spawners[spawnerIndex];
+    public static void Restart() {
+        MovingCube.RestartCubes();
+        SceneManager.LoadScene(0);
+    }
 
-            currentSpawner.SpawnCube();
-            GameObject.Find("Score Text").GetComponent<ScoreText>().OnCubeSpawned();
-        }
+    public static void NextCube() {
+        if (MovingCube.CurrentCube != null)
+            MovingCube.CurrentCube.Stop();
+        spawnerIndex = spawnerIndex == 0 ? 1 : 0;
+        currentSpawner = spawners[spawnerIndex];
+
+        currentSpawner.SpawnCube();
     }
 }
