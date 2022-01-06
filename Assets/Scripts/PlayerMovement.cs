@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool onGround;
     private Rigidbody rb;
+    public AudioClip impact;
+    private AudioSource audioSource;
 
     [SerializeField] private Canvas canvas;
     [SerializeField] private CameraMove cameraScript;
@@ -15,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         onGround = true;
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,8 +25,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (onGround && Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector3(0f, 5f , 0f);
+            rb.velocity = new Vector3(0f, 4.5f , 0f);
             onGround = false;
+            audioSource.PlayOneShot(impact, 0.7F);
         }
     }
 
